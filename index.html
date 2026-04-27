@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout Demo</title>
+    <style>
+        /* CSS 樣式直接寫在這裡 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #4da6ff; /* 外層藍色背景 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* 主白色容器 */
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 600px;
+            display: grid;
+            gap: 12px;
+            /* 預設大螢幕佈局 (b): 12格網格系統方便分配 3 欄與 4 欄 */
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        .box {
+            border-radius: 4px;
+        }
+
+        /* 綠色區塊 (Header) */
+        .green {
+            background-color: #a3d14f;
+            grid-column: span 12;
+            height: 120px;
+        }
+
+        /* 藍色區塊 (中間並排) */
+        .blue {
+            background-color: #00bcd4;
+            grid-column: span 4; /* 12/4 = 3 欄並排 */
+            height: 180px;
+        }
+
+        /* 灰色區塊 (底部並排) */
+        .light-gray {
+            background-color: #eceff1;
+            grid-column: span 3; /* 12/3 = 4 欄並排 */
+            height: 80px;
+        }
+
+        /* --- 響應式斷點：寬度小於 480px (a) --- */
+        @media (max-width: 480px) {
+            .container {
+                /* 在小螢幕改為 2 欄位系統 */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .green {
+                grid-column: span 2;
+                height: 100px;
+            }
+
+            .blue {
+                grid-column: span 2; /* 藍色變為垂直堆疊 (佔滿全寬) */
+                height: 60px;
+            }
+
+            .light-gray {
+                grid-column: span 1; /* 灰色變為 2x2 排列 */
+                height: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="box green"></div>
+
+        <div class="box blue"></div>
+        <div class="box blue"></div>
+        <div class="box blue"></div>
+
+        <div class="box light-gray"></div>
+        <div class="box light-gray"></div>
+        <div class="box light-gray"></div>
+        <div class="box light-gray"></div>
+    </div>
+
+</body>
+</html>
